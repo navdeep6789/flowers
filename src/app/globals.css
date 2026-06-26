@@ -1,26 +1,62 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050515; /* Deep cosmic space */
+  --foreground: #f8fafc; /* White slate */
+  
+  --color-cosmic-purple: #1e1b4b;
+  --color-star-gold: #fef08a;
+  --color-bloom-pink: #f472b6;
+  --color-bloom-cyan: #22d3ee;
+  --color-bloom-purple: #c084fc;
+  --color-bloom-yellow: #fbbf24;
+  --color-grass-green: #10b981;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  
+  --color-cosmic-purple: var(--color-cosmic-purple);
+  --color-star-gold: var(--color-star-gold);
+  --color-bloom-pink: var(--color-bloom-pink);
+  --color-bloom-cyan: var(--color-bloom-cyan);
+  --color-bloom-purple: var(--color-bloom-purple);
+  --color-bloom-yellow: var(--color-bloom-yellow);
+  --color-grass-green: var(--color-grass-green);
+  
+  --font-sans: var(--font-inter), sans-serif;
+  --font-serif: var(--font-playfair), serif;
+  --font-script: var(--font-caveat), cursive;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
 }
+
+/* Ethereal Glow Utilities */
+.text-glow-gold {
+  text-shadow: 0 0 10px rgba(254, 240, 138, 0.6), 0 0 20px rgba(254, 240, 138, 0.3);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.6), 0 0 20px rgba(34, 211, 238, 0.3);
+}
+
+.box-glow-cyan {
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.3), inset 0 0 15px rgba(34, 211, 238, 0.1);
+}
+
+.box-glow-pink {
+  box-shadow: 0 0 15px rgba(244, 114, 182, 0.3), inset 0 0 15px rgba(244, 114, 182, 0.1);
+}
+
+.glass-panel {
+  background: rgba(13, 13, 33, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+

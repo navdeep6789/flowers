@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="100%" height="100%">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#fff" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  
+  <g id="shadow_cone">
+    <ellipse cx="400" cy="900" rx="150" ry="30" fill="rgba(0,0,0,0.1)" />
+  </g>
+
+  <g id="cone" transform-origin="400 900">
+    <path d="M 250,300 L 400,900 L 550,300 Z" fill="#FFF6EA" stroke="#e0e0e0" stroke-width="4" />
+  </g>
+  
+  <g id="leaf_1" transform-origin="300 400">
+    <path d="M 400,600 C 200,500 200,300 300,400 Z" fill="#BEE7D6" />
+  </g>
+  <g id="leaf_2" transform-origin="500 400">
+    <path d="M 400,600 C 600,500 600,300 500,400 Z" fill="#BEE7D6" />
+  </g>
+
+  <g id="flower_rose_1" transform-origin="350 350">
+    <circle cx="350" cy="350" r="80" fill="#F7C6D0" />
+    <g id="flower_rose_1_hit"><rect x="250" y="250" width="200" height="200" fill="transparent" cursor="pointer"/></g>
+  </g>
+
+  <g id="flower_peony_2" transform-origin="450 300">
+    <circle cx="450" cy="300" r="90" fill="#FF8A7A" />
+    <g id="flower_peony_2_hit"><rect x="350" y="200" width="200" height="200" fill="transparent" cursor="pointer"/></g>
+  </g>
+
+  <g id="flower_ranunculus_3" transform-origin="420 450">
+    <circle cx="420" cy="450" r="60" fill="#C9A6E0" />
+    <g id="flower_ranunculus_3_hit"><rect x="350" y="380" width="140" height="140" fill="transparent" cursor="pointer"/></g>
+  </g>
+
+  <g id="flower_wild_4" transform-origin="280 420">
+    <circle cx="280" cy="420" r="50" fill="#D4A76A" />
+    <g id="flower_wild_4_hit"><rect x="220" y="360" width="120" height="120" fill="transparent" cursor="pointer"/></g>
+  </g>
+
+  <g id="flower_rose_2" transform-origin="520 400">
+    <circle cx="520" cy="400" r="70" fill="#F7C6D0" />
+    <g id="flower_rose_2_hit"><rect x="430" y="310" width="180" height="180" fill="transparent" cursor="pointer"/></g>
+  </g>
+
+  <g id="flower_peony_3" transform-origin="360 200">
+    <circle cx="360" cy="200" r="85" fill="#FFF" stroke="#FF8A7A" stroke-width="2" />
+    <g id="flower_peony_3_hit"><rect x="260" y="100" width="200" height="200" fill="transparent" cursor="pointer"/></g>
+  </g>
+
+</svg>

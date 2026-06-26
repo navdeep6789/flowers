@@ -1,0 +1,8 @@
+[
+  { "id": "flower_rose_1", "label": "Pink Rose", "noteIndex": 0 },
+  { "id": "flower_peony_2", "label": "Coral Peony", "noteIndex": 1 },
+  { "id": "flower_ranunculus_3", "label": "Ranunculus", "noteIndex": 2 },
+  { "id": "flower_wild_4", "label": "Wildflower", "noteIndex": 3 },
+  { "id": "flower_rose_2", "label": "Second Rose", "noteIndex": 4 },
+  { "id": "flower_peony_3", "label": "White Peony", "noteIndex": 5 }
+]
