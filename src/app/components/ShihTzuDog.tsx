@@ -48,50 +48,70 @@ export default function ShihTzuDog({
 
   // Peeing particles are managed globally in the garden canvas to bypass React rerender cycles
 
-  // Synthesize a cute Shih Tzu bark using Web Audio API
+  const audioCtxRef = useRef<AudioContext | null>(null);
+
+  const getAudioContext = () => {
+    if (!audioCtxRef.current) {
+      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+      if (AudioCtx) {
+        audioCtxRef.current = new AudioCtx();
+      }
+    }
+    if (audioCtxRef.current && audioCtxRef.current.state === "suspended") {
+      audioCtxRef.current.resume();
+    }
+    return audioCtxRef.current;
+  };
+
+  // Synthesize a cute puppy bark (higher pitched, zippy sound)
   const playBark = () => {
     try {
-      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
-      if (!AudioCtx) return;
-      const ctx = new AudioCtx();
+      const ctx = getAudioContext();
+      if (!ctx) return;
       
+      const now = ctx.currentTime;
+      
+      // Sound 1: main bark impulse
       const osc1 = ctx.createOscillator();
       const gain1 = ctx.createGain();
       osc1.type = "triangle";
       
-      osc1.frequency.setValueAtTime(320, ctx.currentTime);
-      osc1.frequency.exponentialRampToValueAtTime(750, ctx.currentTime + 0.05);
-      osc1.frequency.exponentialRampToValueAtTime(150, ctx.currentTime + 0.15);
+      // Higher frequencies for a cute puppy yip
+      osc1.frequency.setValueAtTime(550, now);
+      osc1.frequency.exponentialRampToValueAtTime(1100, now + 0.04);
+      osc1.frequency.exponentialRampToValueAtTime(300, now + 0.12);
       
-      gain1.gain.setValueAtTime(0.15, ctx.currentTime);
-      gain1.gain.linearRampToValueAtTime(0.15, ctx.currentTime + 0.05);
-      gain1.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+      gain1.gain.setValueAtTime(0.12, now);
+      gain1.gain.linearRampToValueAtTime(0.12, now + 0.04);
+      gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
       
       osc1.connect(gain1);
       gain1.connect(ctx.destination);
       
-      osc1.start();
-      osc1.stop(ctx.currentTime + 0.16);
+      osc1.start(now);
+      osc1.stop(now + 0.13);
 
+      // Sound 2: quick double-bark echo
       setTimeout(() => {
         const osc2 = ctx.createOscillator();
         const gain2 = ctx.createGain();
         osc2.type = "triangle";
         
-        osc2.frequency.setValueAtTime(340, ctx.currentTime);
-        osc2.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.04);
-        osc2.frequency.exponentialRampToValueAtTime(160, ctx.currentTime + 0.12);
+        const now2 = ctx.currentTime;
+        osc2.frequency.setValueAtTime(600, now2);
+        osc2.frequency.exponentialRampToValueAtTime(1200, now2 + 0.03);
+        osc2.frequency.exponentialRampToValueAtTime(350, now2 + 0.10);
         
-        gain2.gain.setValueAtTime(0.12, ctx.currentTime);
-        gain2.gain.linearRampToValueAtTime(0.12, ctx.currentTime + 0.04);
-        gain2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+        gain2.gain.setValueAtTime(0.09, now2);
+        gain2.gain.linearRampToValueAtTime(0.09, now2 + 0.03);
+        gain2.gain.exponentialRampToValueAtTime(0.001, now2 + 0.10);
         
         osc2.connect(gain2);
         gain2.connect(ctx.destination);
         
-        osc2.start();
-        osc2.stop(ctx.currentTime + 0.13);
-      }, 90);
+        osc2.start(now2);
+        osc2.stop(now2 + 0.11);
+      }, 75); // Faster echo delay
     } catch (e) {}
   };
 

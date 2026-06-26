@@ -9,6 +9,16 @@ import MusicToggle from "./components/MusicToggle";
 export default function Home() {
   const [isActivated, setIsActivated] = useState(false);
   const [flowerPositions, setFlowerPositions] = useState<number[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
     <main className="relative min-h-screen w-full bg-[#03030d] overflow-hidden flex flex-col items-center justify-between text-slate-100 font-sans select-none">
@@ -57,7 +67,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* Animated Shih Tzu Dogs (6 Dogs) */}
+      {/* Animated Shih Tzu Dogs (6 on Desktop, 3 on Mobile) */}
       {isActivated && (
         <>
           {/* Max - Gold theme, groundY 90 */}
@@ -66,12 +76,17 @@ export default function Home() {
           <ShihTzuDog id="dog-rocky" colorTheme="gray" initialX={-300} groundY={115} zIndex={14} flowerXPercents={flowerPositions} />
           {/* Coco - Black theme, groundY 70 */}
           <ShihTzuDog id="dog-coco" colorTheme="black" initialX={-450} groundY={70} zIndex={19} flowerXPercents={flowerPositions} />
-          {/* Buster - Gold theme, groundY 95 */}
-          <ShihTzuDog id="dog-buster" colorTheme="gold" initialX={-600} groundY={95} zIndex={17} flowerXPercents={flowerPositions} />
-          {/* Shadow - Gray theme, groundY 110 */}
-          <ShihTzuDog id="dog-shadow" colorTheme="gray" initialX={-750} groundY={110} zIndex={15} flowerXPercents={flowerPositions} />
-          {/* Bella - Black theme, groundY 80 */}
-          <ShihTzuDog id="dog-bella" colorTheme="black" initialX={-900} groundY={80} zIndex={18} flowerXPercents={flowerPositions} />
+          
+          {!isMobile && (
+            <>
+              {/* Buster - Gold theme, groundY 95 */}
+              <ShihTzuDog id="dog-buster" colorTheme="gold" initialX={-600} groundY={95} zIndex={17} flowerXPercents={flowerPositions} />
+              {/* Shadow - Gray theme, groundY 110 */}
+              <ShihTzuDog id="dog-shadow" colorTheme="gray" initialX={-750} groundY={110} zIndex={15} flowerXPercents={flowerPositions} />
+              {/* Bella - Black theme, groundY 80 */}
+              <ShihTzuDog id="dog-bella" colorTheme="black" initialX={-900} groundY={80} zIndex={18} flowerXPercents={flowerPositions} />
+            </>
+          )}
         </>
       )}
 

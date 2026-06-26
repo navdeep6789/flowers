@@ -365,13 +365,16 @@ export default function InteractiveGarden({ isActivated, onFlowersChange }: Inte
   const hasGrownRef = useRef<Record<string, number>>({});
   const audioCtxRef = useRef<AudioContext | null>(null);
 
-  // Initialize 100 flowers
+  // Initialize flowers dynamically based on screen width (less dense on mobile)
   useEffect(() => {
-    const generatedFlowers: FlowerState[] = [];
-    const count = 100;
+    const width = window.innerWidth;
+    const isMobile = width < 768;
+    const count = isMobile ? 35 : 100;
+    const spacing = isMobile ? 2.5 : 0.9;
     
+    const generatedFlowers: FlowerState[] = [];
     for (let i = 0; i < count; i++) {
-      const xPercent = 5 + (i * 0.9) + (Math.random() * 0.6 - 0.3);
+      const xPercent = 5 + (i * spacing) + (Math.random() * 0.6 - 0.3);
       const depthLayer = (i % 3) as 0 | 1 | 2;
       
       let height = 260;
